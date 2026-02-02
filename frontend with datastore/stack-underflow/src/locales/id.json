@@ -1,0 +1,88 @@
+{
+  "header": {
+    "logo": "Stack Underflow",
+    "questions": "Pertanyaan",
+    "askQuestion": "Tanya Pertanyaan",
+    "logout": "Keluar",
+    "guest": "Tamu",
+    "login": "Masuk",
+    "signup": "Daftar"
+  },
+  "questionList": {
+    "title": "Pertanyaan",
+    "askQuestion": "Tanya Pertanyaan",
+    "noQuestions": "Belum ada pertanyaan. Jadilah yang pertama bertanya!",
+    "by": "oleh",
+    "comment": "komentar",
+    "comments": "komentar"
+  },
+  "createQuestion": {
+    "title": "Tanyakan Pertanyaan",
+    "titleLabel": "Judul",
+    "titlePlaceholder": "Apa pertanyaan Anda?",
+    "descriptionLabel": "Deskripsi",
+    "descriptionPlaceholder": "Berikan detail lebih lanjut tentang pertanyaan Anda...",
+    "postQuestion": "Kirim Pertanyaan",
+    "cancel": "Batal"
+  },
+  "questionDetail": {
+    "notFound": "Pertanyaan tidak ditemukan",
+    "backToQuestions": "Kembali ke Pertanyaan",
+    "backLink": "← Kembali ke Pertanyaan",
+    "editQuestion": "Edit Pertanyaan",
+    "titleLabel": "Judul",
+    "descriptionLabel": "Deskripsi",
+    "statusLabel": "Status",
+    "status": {
+      "open": "Terbuka",
+      "answered": "Terjawab",
+      "closed": "Ditutup"
+    },
+    "save": "Simpan",
+    "cancel": "Batal",
+    "askedBy": "Ditanyakan oleh",
+    "edit": "Edit",
+    "comments": "Komentar",
+    "addCommentPlaceholder": "Tambahkan komentar...",
+    "addComment": "Tambah Komentar",
+    "noComments": "Belum ada komentar."
+  },
+  "login": {
+    "title": "Stack Underflow",
+    "subtitle": "Platform Tanya Jawab",
+    "usernameLabel": "Nama Pengguna",
+    "usernamePlaceholder": "Masukkan nama pengguna apa saja",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Masukkan kata sandi apa saja",
+    "loginButton": "Masuk",
+    "note": "Catatan: Ini adalah login tiruan. Nama pengguna/kata sandi apa pun akan berfungsi."
+  },
+  "signup": {
+    "title": "Stack Underflow",
+    "subtitle": "Buat akun Anda",
+    "usernameLabel": "Nama Pengguna",
+    "usernamePlaceholder": "Pilih nama pengguna",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Pilih kata sandi",
+    "confirmPasswordLabel": "Konfirmasi Kata Sandi",
+    "confirmPasswordPlaceholder": "Konfirmasi kata sandi Anda",
+    "signupButton": "Daftar",
+    "alreadyHaveAccount": "Sudah punya akun?",
+    "loginHere": "Masuk di sini",
+    "errors": {
+      "usernameRequired": "Nama pengguna diperlukan",
+      "passwordRequired": "Kata sandi diperlukan",
+      "passwordsNotMatch": "Kata sandi tidak cocok",
+      "usernameExists": "Nama pengguna sudah ada"
+    }
+  },
+  "date": {
+    "justNow": "Baru saja",
+    "minuteAgo": "{{count}} menit yang lalu",
+    "minutesAgo": "{{count}} menit yang lalu",
+    "hourAgo": "{{count}} jam yang lalu",
+    "hoursAgo": "{{count}} jam yang lalu",
+    "dayAgo": "{{count}} hari yang lalu",
+    "daysAgo": "{{count}} hari yang lalu"
+  }
+}

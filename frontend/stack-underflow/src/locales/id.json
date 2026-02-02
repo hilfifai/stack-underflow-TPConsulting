@@ -1,0 +1,118 @@
+{
+  "header": {
+    "logo": "Stack Underflow",
+    "questions": "Pertanyaan",
+    "askQuestion": "Tanya Pertanyaan",
+    "logout": "Keluar",
+    "guest": "Tamu",
+    "login": "Masuk",
+    "signup": "Daftar"
+  },
+  "questionList": {
+    "title": "Pertanyaan",
+    "askQuestion": "Tanya Pertanyaan",
+    "noQuestions": "Belum ada pertanyaan. Jadilah yang pertama bertanya!",
+    "by": "oleh",
+    "comment": "komentar",
+    "comments": "komentar",
+    "searchPlaceholder": "Cari pertanyaan...",
+    "searchResults": "Ditemukan {{count}} hasil untuk \"{{query}}\"",
+    "noSearchResults": "Tidak ada pertanyaan yang cocok dengan pencarian Anda.",
+    "filterAll": "Semua",
+    "filterResults": "Ditemukan {{count}} pertanyaan dengan status \"{{status}}\"",
+    "searchAndFilterResults": "Ditemukan {{count}} hasil untuk \"{{query}}\" dengan status \"{{status}}\"",
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya"
+  },
+  "createQuestion": {
+    "title": "Tanyakan Pertanyaan",
+    "titleLabel": "Judul",
+    "titlePlaceholder": "Apa pertanyaan Anda?",
+    "titleHint": "Minimal 5 karakter, maksimal 200 karakter",
+    "descriptionLabel": "Deskripsi",
+    "descriptionPlaceholder": "Berikan detail lebih lanjut tentang pertanyaan Anda...",
+    "descriptionHint": "Minimal 10 karakter, maksimal 5000 karakter",
+    "postQuestion": "Kirim Pertanyaan",
+    "cancel": "Batal",
+    "submitting": "Mengirim...",
+    "error": {
+      "notLoggedIn": "Anda harus masuk untuk membuat pertanyaan",
+      "titleRequired": "Judul diperlukan",
+      "titleTooShort": "Judul harus minimal 5 karakter",
+      "titleTooLong": "Judul harus kurang dari 200 karakter",
+      "descriptionRequired": "Deskripsi diperlukan",
+      "descriptionTooShort": "Deskripsi harus minimal 10 karakter",
+      "descriptionTooLong": "Deskripsi harus kurang dari 5000 karakter"
+    }
+  },
+  "questionDetail": {
+    "notFound": "Pertanyaan tidak ditemukan",
+    "backToQuestions": "Kembali ke Pertanyaan",
+    "backLink": "← Kembali ke Pertanyaan",
+    "editQuestion": "Edit Pertanyaan",
+    "titleLabel": "Judul",
+    "descriptionLabel": "Deskripsi",
+    "statusLabel": "Status",
+    "status": {
+      "open": "Terbuka",
+      "answered": "Terjawab",
+      "closed": "Ditutup"
+    },
+    "save": "Simpan",
+    "saving": "Menyimpan...",
+    "cancel": "Batal",
+    "askedBy": "Ditanyakan oleh",
+    "edit": "Edit",
+    "comments": "Komentar",
+    "addCommentPlaceholder": "Tambahkan komentar...",
+    "addComment": "Tambah Komentar",
+    "submitting": "Mengirim...",
+    "noComments": "Belum ada komentar.",
+    "relatedQuestions": "Pertanyaan Terkait",
+    "hotNetworkQuestions": "Pertanyaan Populer",
+    "error": {
+      "commentRequired": "Isi komentar diperlukan",
+      "commentTooShort": "Komentar harus minimal 3 karakter",
+      "commentTooLong": "Komentar harus kurang dari 1000 karakter",
+      "unauthorized": "Anda tidak berwenang untuk melakukan tindakan ini"
+    }
+  },
+  "login": {
+    "title": "Stack Underflow",
+    "subtitle": "Platform Tanya Jawab",
+    "usernameLabel": "Nama Pengguna",
+    "usernamePlaceholder": "Masukkan nama pengguna apa saja",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Masukkan kata sandi apa saja",
+    "loginButton": "Masuk",
+    "note": "Catatan: Ini adalah login tiruan. Nama pengguna/kata sandi apa pun akan berfungsi."
+  },
+  "signup": {
+    "title": "Stack Underflow",
+    "subtitle": "Buat akun Anda",
+    "usernameLabel": "Nama Pengguna",
+    "usernamePlaceholder": "Pilih nama pengguna",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Pilih kata sandi",
+    "confirmPasswordLabel": "Konfirmasi Kata Sandi",
+    "confirmPasswordPlaceholder": "Konfirmasi kata sandi Anda",
+    "signupButton": "Daftar",
+    "alreadyHaveAccount": "Sudah punya akun?",
+    "loginHere": "Masuk di sini",
+    "errors": {
+      "usernameRequired": "Nama pengguna diperlukan",
+      "passwordRequired": "Kata sandi diperlukan",
+      "passwordsNotMatch": "Kata sandi tidak cocok",
+      "usernameExists": "Nama pengguna sudah ada"
+    }
+  },
+  "date": {
+    "justNow": "Baru saja",
+    "minuteAgo": "{{count}} menit yang lalu",
+    "minutesAgo": "{{count}} menit yang lalu",
+    "hourAgo": "{{count}} jam yang lalu",
+    "hoursAgo": "{{count}} jam yang lalu",
+    "dayAgo": "{{count}} hari yang lalu",
+    "daysAgo": "{{count}} hari yang lalu"
+  }
+}

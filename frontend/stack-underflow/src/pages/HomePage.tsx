@@ -1,8 +1,26 @@
-import { dataStore } from "#src/store/dataStore";
+import { useQuestions } from "#src/hooks/useQuestions";
 import { QuestionList } from "#src/components/Question/QuestionList";
 
 export function HomePage() {
-  const questions = dataStore.getQuestions();
+  const { questions, loading, error } = useQuestions();
 
-  return <QuestionList questions={questions} />;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner" />
+        <p>Loading questions...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <h2>Error loading questions</h2>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
+
+  return <QuestionList questions={questions || []} />;
 }

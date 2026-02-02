@@ -1,0 +1,88 @@
+{
+  "header": {
+    "logo": "Stack Underflow",
+    "questions": "Questions",
+    "askQuestion": "Ask Question",
+    "logout": "Logout",
+    "guest": "Guest",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "questionList": {
+    "title": "Questions",
+    "askQuestion": "Ask Question",
+    "noQuestions": "No questions yet. Be the first to ask!",
+    "by": "by",
+    "comment": "comment",
+    "comments": "comments"
+  },
+  "createQuestion": {
+    "title": "Ask a Question",
+    "titleLabel": "Title",
+    "titlePlaceholder": "What's your question?",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Provide more details about your question...",
+    "postQuestion": "Post Question",
+    "cancel": "Cancel"
+  },
+  "questionDetail": {
+    "notFound": "Question not found",
+    "backToQuestions": "Back to Questions",
+    "backLink": "← Back to Questions",
+    "editQuestion": "Edit Question",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "statusLabel": "Status",
+    "status": {
+      "open": "Open",
+      "answered": "Answered",
+      "closed": "Closed"
+    },
+    "save": "Save",
+    "cancel": "Cancel",
+    "askedBy": "Asked by",
+    "edit": "Edit",
+    "comments": "Comments",
+    "addCommentPlaceholder": "Add a comment...",
+    "addComment": "Add Comment",
+    "noComments": "No comments yet."
+  },
+  "login": {
+    "title": "Stack Underflow",
+    "subtitle": "Q&A Platform",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Enter any username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter any password",
+    "loginButton": "Login",
+    "note": "Note: This is a mock login. Any username/password will work."
+  },
+  "signup": {
+    "title": "Stack Underflow",
+    "subtitle": "Create your account",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Choose a username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Choose a password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "signupButton": "Sign Up",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "errors": {
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required",
+      "passwordsNotMatch": "Passwords do not match",
+      "usernameExists": "Username already exists"
+    }
+  },
+  "date": {
+    "justNow": "Just now",
+    "minuteAgo": "{{count}} minute ago",
+    "minutesAgo": "{{count}} minutes ago",
+    "hourAgo": "{{count}} hour ago",
+    "hoursAgo": "{{count}} hours ago",
+    "dayAgo": "{{count}} day ago",
+    "daysAgo": "{{count}} days ago"
+  }
+}

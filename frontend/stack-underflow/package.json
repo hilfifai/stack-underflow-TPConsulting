@@ -12,7 +12,11 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "electron:dev": "concurrently \"npm run dev\" \"NODE_ENV=development electron ./electron/main.mjs\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:mac": "npm run build && electron-builder --mac"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",
@@ -29,6 +33,26 @@
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
     "typescript": "^5.9.3",
-    "vite": "^6.4.1"
+    "vite": "^6.4.1",
+    "electron": "^34.0.0",
+    "electron-builder": "^26.0.0",
+    "concurrently": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.stackunderflow.app",
+    "productName": "StackUnderflow",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
   }
 }

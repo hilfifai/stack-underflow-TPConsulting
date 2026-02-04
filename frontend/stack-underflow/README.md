@@ -279,3 +279,64 @@ Potential improvements for a production-ready application:
 ## License
 
 MIT
+
+---
+
+## Desktop Build (Electron)
+
+This application can be packaged as a native desktop application for Windows and macOS using Electron.
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- For macOS build: macOS with Xcode installed
+- For Windows build: Windows or cross-compilation tools on macOS/Linux
+
+### Installation
+
+Install the dependencies including Electron:
+
+```bash
+npm install
+```
+
+### Development
+
+Run the desktop application in development mode:
+
+```bash
+npm run electron:dev
+```
+
+### Build for Production
+
+Build for all platforms:
+
+```bash
+npm run electron:build
+```
+
+Build specifically for Windows:
+
+```bash
+npm run electron:build:win
+```
+
+Build specifically for macOS:
+
+```bash
+npm run electron:build:mac
+```
+
+### Output
+
+Built installers will be in the `dist-electron` directory:
+- **Windows**: `.exe` installer (NSIS)
+- **macOS**: `.dmg` disk image
+
+### Notes
+
+- The app uses `electron-is-dev` to detect development vs production mode
+- In production, the app loads from the local `dist` folder
+- External links open in the default system browser
+- Custom window title bar with `hiddenInset` style for a native look

@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TextInput,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { useAuth } from "../store/AuthContext";
 import type { Question } from "../types";
 import { fetchQuestions } from "../services/questions";
@@ -74,6 +75,13 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
       loadQuestions(true, "");
     }
   }, [isInitialized, loadQuestions]);
+
+  // Refresh questions when screen comes into focus (e.g., after creating a question)
+  useFocusEffect(
+    useCallback(() => {
+      loadQuestions(true, "");
+    }, [loadQuestions])
+  );
 
   const handleRefresh = () => {
     setSearchQuery("");

@@ -5,12 +5,16 @@ import { ValidationError, validateTitle, validateDescription } from "../api/type
 // ========================= QUESTION API FUNCTIONS =========================
 
 /**
- * Get all questions
+ * Get all questions with optional search and pagination
  */
-export const fetchQuestions = async (): Promise<Question[]> => {
+export const fetchQuestions = async (options?: {
+  search?: string;
+  limit?: number;
+  offset?: number;
+}): Promise<Question[]> => {
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 100));
-  return dataStore.getQuestions();
+  return dataStore.getQuestions(options);
 };
 
 /**

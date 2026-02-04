@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   StyleSheet,
   RefreshControl,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 import { useAuth } from "../store/AuthContext";
 import type { Question } from "../types";
@@ -14,32 +15,97 @@ import { fetchQuestions } from "../services/questions";
 import { formatDate } from "../utils/formatDate";
 import { HomeScreenProps } from "../navigation/types";
 
+const PAGE_SIZE = 10;
+
 export function HomeScreen({ navigation }: HomeScreenProps) {
   const { user, logout } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const loadQuestions = async () => {
-    try {
-      const data = await fetchQuestions();
-      setQuestions(data);
-    } catch (error) {
-      console.error("Failed to load questions:", error);
-    } finally {
-      setIsLoading(false);
+  const loadQuestions = useCallback(
+    async (resetPage = false, search = "") => {
+      const currentPage = resetPage ? 0 : page;
+      const offset = currentPage * PAGE_SIZE;
+
+      try {
+        if (resetPage) {
+          setIsLoading(true);
+        } else {
+          setIsLoadingMore(true);
+        }
+
+        const data = await fetchQuestions({
+          search: search || searchQuery,
+          limit: PAGE_SIZE,
+          offset: resetPage ? 0 : offset,
+        });
+
+        if (resetPage) {
+          setQuestions(data);
+        } else {
+          setQuestions((prev) => {
+            const existingIds = new Set(prev.map((q) => q.id));
+            const newData = data.filter((q) => !existingIds.has(q.id));
+            return [...prev, ...newData];
+          });
+        }
+
+        setHasMore(data.length === PAGE_SIZE);
+        setPage(currentPage + 1);
+      } catch (error) {
+        console.error("Failed to load questions:", error);
+      } finally {
+        setIsLoading(false);
+        setIsLoadingMore(false);
+      }
+    },
+    [page, searchQuery]
+  );
+
+  useEffect(() => {
+    if (!isInitialized) {
+      setIsInitialized(true);
+      loadQuestions(true, "");
+    }
+  }, [isInitialized, loadQuestions]);
+
+  const handleRefresh = () => {
+    setSearchQuery("");
+    setIsRefreshing(true);
+    loadQuestions(true, "").finally(() => {
+      setIsRefreshing(false);
+    });
+  };
+
+  const handleLoadMore = () => {
+    if (!isLoadingMore && hasMore && !searchQuery) {
+      loadQuestions(false);
     }
   };
 
-  const handleRefresh = async () => {
-    setIsRefreshing(true);
-    await loadQuestions();
-    setIsRefreshing(false);
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setPage(0);
+    setHasMore(true);
+    if (query.trim() === "") {
+      loadQuestions(true, "");
+    }
   };
 
   useEffect(() => {
-    loadQuestions();
-  }, []);
+    if (searchQuery !== undefined) {
+      const timeoutId = setTimeout(() => {
+        loadQuestions(true);
+      }, 300);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [searchQuery, loadQuestions]);
 
   const navigateToQuestionDetail = (questionId: string) => {
     navigation.navigate("QuestionDetail", { questionId });
@@ -85,6 +151,46 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
     </TouchableOpacity>
   );
 
+  const renderFooter = () => {
+    if (isLoadingMore) {
+      return (
+        <View style={styles.loadMoreContainer}>
+          <Text style={styles.loadMoreText}>Loading more...</Text>
+        </View>
+      );
+    }
+    if (!hasMore && questions.length > 0) {
+      return (
+        <View style={styles.loadMoreContainer}>
+          <Text style={styles.loadMoreText}>No more questions</Text>
+        </View>
+      );
+    }
+    return null;
+  };
+
+  const renderEmptyList = () => {
+    if (isLoading) {
+      return (
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading questions...</Text>
+        </View>
+      );
+    }
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>
+          {searchQuery ? "No questions found" : "No questions yet"}
+        </Text>
+        <Text style={styles.emptySubtext}>
+          {searchQuery
+            ? "Try a different search term"
+            : "Be the first to ask a question!"}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -97,6 +203,16 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </View>
       </View>
 
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search questions..."
+          value={searchQuery}
+          onChangeText={handleSearch}
+          clearButtonMode="while-editing"
+        />
+      </View>
+
       <TouchableOpacity
         style={styles.createButton}
         onPress={navigateToCreateQuestion}
@@ -104,21 +220,19 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         <Text style={styles.createButtonText}>Ask Question</Text>
       </TouchableOpacity>
 
-      {isLoading ? (
-        <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>Loading questions...</Text>
-        </View>
-      ) : (
-        <FlatList
-          data={questions}
-          keyExtractor={(item) => item.id}
-          renderItem={renderQuestionItem}
-          contentContainerStyle={styles.listContent}
-          refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
-          }
-        />
-      )}
+      <FlatList
+        data={questions}
+        keyExtractor={(item) => item.id}
+        renderItem={renderQuestionItem}
+        contentContainerStyle={styles.listContent}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
+        }
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={renderFooter}
+        ListEmptyComponent={renderEmptyList()}
+      />
     </SafeAreaView>
   );
 }
@@ -163,9 +277,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
+  searchContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    backgroundColor: "#fff",
+  },
+  searchInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 16,
+    backgroundColor: "#fafafa",
+  },
   createButton: {
     marginHorizontal: 16,
-    marginVertical: 12,
+    marginVertical: 8,
     paddingVertical: 12,
     backgroundColor: "#f48024",
     borderRadius: 8,
@@ -180,9 +308,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 40,
   },
   loadingText: {
     fontSize: 16,
+    color: "#666",
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 60,
+    paddingHorizontal: 32,
+  },
+  emptyText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 8,
+  },
+  emptySubtext: {
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
+  },
+  loadMoreContainer: {
+    paddingVertical: 16,
+    alignItems: "center",
+  },
+  loadMoreText: {
+    fontSize: 14,
     color: "#666",
   },
   listContent: {

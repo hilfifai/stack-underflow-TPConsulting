@@ -8,6 +8,7 @@ import { SignupScreen } from "../screens/SignupScreen";
 import { HomeScreen } from "../screens/HomeScreen";
 import { QuestionDetailScreen } from "../screens/QuestionDetailScreen";
 import { CreateQuestionScreen } from "../screens/CreateQuestionScreen";
+import { EditQuestionScreen } from "../screens/EditQuestionScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -30,6 +31,7 @@ function RootNavigation() {
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="QuestionDetail" component={QuestionDetailScreen} />
             <Stack.Screen name="CreateQuestion" component={CreateQuestionScreen} />
+            <Stack.Screen name="EditQuestion" component={EditQuestionScreen} />
           </>
         ) : (
           <>

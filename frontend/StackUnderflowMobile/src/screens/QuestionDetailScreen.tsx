@@ -8,6 +8,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Alert,
+  Platform,
 } from "react-native";
 import { useAuth } from "../store/AuthContext";
 import type { Question, Comment } from "../types";
@@ -40,26 +41,27 @@ export function QuestionDetailScreen({ route, navigation }: QuestionDetailScreen
 
   useEffect(() => {
     loadQuestion();
-  }, [questionId]);
+
+    const unsubscribe = navigation.addListener("focus", () => {
+      loadQuestion();
+    });
+
+    return unsubscribe;
+  }, [questionId, navigation]);
 
   const handleAddComment = async () => {
     if (!user || !newComment.trim()) return;
 
     try {
-      const comment = await addComment({
+      await addComment({
         questionId,
         content: newComment,
         userId: user.id,
         username: user.username,
       });
-      setQuestion((prev) => {
-        if (!prev) return null;
-        return {
-          ...prev,
-          comments: [...prev.comments, comment],
-        };
-      });
       setNewComment("");
+      // Refetch to get updated question with the new comment
+      await loadQuestion();
     } catch (error) {
       Alert.alert("Error", "Failed to add comment");
     }
@@ -158,6 +160,24 @@ export function QuestionDetailScreen({ route, navigation }: QuestionDetailScreen
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Text style={styles.backButtonText}>← Back</Text>
+        </TouchableOpacity>
+        {canEdit && (
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() => navigation.navigate("EditQuestion", { questionId })}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Text style={styles.editButtonText}>Edit</Text>
+          </TouchableOpacity>
+        )}
+      </View>
       <ScrollView style={styles.content}>
         <View style={styles.questionCard}>
           <View style={styles.questionHeader}>
@@ -323,6 +343,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+  },
+  backButton: {
+    paddingVertical: 4,
+  },
+  backButtonText: {
+    fontSize: 16,
+    color: "#0077cc",
+  },
+  editButton: {
+    paddingVertical: 4,
+  },
+  editButtonText: {
+    fontSize: 16,
+    color: "#666",
   },
   loadingContainer: {
     flex: 1,

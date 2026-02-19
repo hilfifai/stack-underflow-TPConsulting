@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "stack-underflow-api",
+		"name": "StackUnderflow API",
+		"description": "Q&A Platform API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"dev_master\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						},
+						"description": "Login to get access token"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/data",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "data"]
+						},
+						"description": "Get current user info"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Create Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"How do I center a div in CSS?\",\n    \"description\": \"I've tried using margin: auto but it's not working. What's the best way to center a div both horizontally and vertically?\",\n    \"status\": \"open\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Create a new question"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Get all questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Questions Paginated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/paginated?page=1&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "paginated"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get questions with pagination"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/search?q=center",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "center"
+								}
+							]
+						},
+						"description": "Search questions by query"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hot Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/hot?limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "hot"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get hot questions (most engagement)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/550e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "550e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Get a question by ID with comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Related Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/550e8400-e29b-41d4-a716-446655440001/related?limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "550e8400-e29b-41d4-a716-446655440001", "related"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get related questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"How do I center a div in CSS (updated)?\",\n    \"description\": \"Updated description\",\n    \"status\": \"answered\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions/550e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "550e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Update a question"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/550e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "550e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Delete a question"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"You can use flexbox: display: flex; justify-content: center; align-items: center;\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments?question_id=550e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments"],
+							"query": [
+								{
+									"key": "question_id",
+									"value": "550e8400-e29b-41d4-a716-446655440001"
+								}
+							]
+						},
+						"description": "Create a new comment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments By Question ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/question/550e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "question", "550e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Get comments by question ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/770e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "770e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Get a comment by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Updated comment content\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments/770e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "770e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Update a comment"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/770e8400-e29b-41d4-a716-446655440001",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "770e8400-e29b-41d4-a716-446655440001"]
+						},
+						"description": "Delete a comment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["health"]
+						},
+						"description": "Health check endpoint"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

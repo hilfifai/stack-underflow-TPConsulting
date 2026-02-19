@@ -1,0 +1,38 @@
+{
+  "name": "stack-underflow-vue",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Vue.js Q&A web application inspired by Stack Overflow",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev:mock": "vite --mode mock",
+    "dev:fake": "vite --mode fake",
+    "dev:api": "vite --mode api",
+    "build": "vue-tsc && vite build",
+    "build:mock": "vue-tsc && vite build --mode mock",
+    "build:fake": "vue-tsc && vite build --mode fake",
+    "build:api": "vue-tsc && vite build --mode api",
+    "preview": "vite preview",
+    "preview:mock": "vite preview --mode mock",
+    "preview:fake": "vite preview --mode fake",
+    "preview:api": "vite preview --mode api",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "i18next": "^25.8.0",
+    "pinia": "^3.0.2",
+    "vue": "^3.5.13",
+    "vue-i18n": "^11.1.2",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1",
+    "vue-tsc": "^2.2.0"
+  }
+}

@@ -1,0 +1,38 @@
+@if (!authService.isAuthenticated) {
+  <div class="error-message">{{ t('createQuestion.error.notLoggedIn') }}</div>
+} @else {
+  @if (error()) {
+    <div class="error-message">{{ error() }}</div>
+  }
+  <form (ngSubmit)="handleSubmit()" class="question-form">
+    <div class="form-group">
+      <label for="title">{{ t('createQuestion.titleLabel') }}</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="title"
+        name="title"
+        [placeholder]="t('createQuestion.titlePlaceholder')"
+        required
+      />
+      <span class="form-hint">{{ t('createQuestion.titleHint') }}</span>
+    </div>
+    <div class="form-group">
+      <label for="description">{{ t('createQuestion.descriptionLabel') }}</label>
+      <textarea
+        id="description"
+        [(ngModel)]="description"
+        name="description"
+        [placeholder]="t('createQuestion.descriptionPlaceholder')"
+        rows="5"
+        required
+      ></textarea>
+      <span class="form-hint">{{ t('createQuestion.descriptionHint') }}</span>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="submitting()">
+        {{ submitting() ? t('createQuestion.submitting') : t('createQuestion.postQuestion') }}
+      </button>
+    </div>
+  </form>
+}

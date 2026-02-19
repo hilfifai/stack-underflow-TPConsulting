@@ -1,0 +1,61 @@
+{
+  "name": "stack-underflow",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A lightweight, frontend-only Q&A web application inspired by Stack Overflow",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --host",
+    "dev:mock": "vite --host --mode mock",
+    "dev:fake": "vite --host --mode fake",
+    "dev:real": "vite --host --mode real",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "electron:dev": "concurrently \"npm run dev\" \"NODE_ENV=development electron ./electron/main.mjs\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:mac": "npm run build && electron-builder --mac"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.20",
+    "i18next": "^25.8.0",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^16.5.4",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "@types/react": "^18.3.26",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1",
+    "electron": "^34.0.0",
+    "electron-builder": "^26.0.0",
+    "concurrently": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.stackunderflow.app",
+    "productName": "StackUnderflow",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}

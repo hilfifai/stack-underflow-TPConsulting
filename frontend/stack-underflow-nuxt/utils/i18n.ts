@@ -1,0 +1,66 @@
+// ========================= INTERNATIONALIZATION =========================
+
+export type Locale = "en" | "id";
+
+export const translations: Record<Locale, Record<string, string>> = {
+  en: {
+    "nav.home": "Home",
+    "nav.login": "Login",
+    "nav.signup": "Signup",
+    "nav.logout": "Logout",
+    "nav.create_question": "Ask Question",
+    "auth.username": "Username",
+    "auth.password": "Password",
+    "auth.login": "Login",
+    "auth.signup": "Sign Up",
+    "auth.no_account": "Don't have an account?",
+    "auth.has_account": "Already have an account?",
+    "questions.title": "Title",
+    "questions.description": "Description",
+    "questions.create": "Create Question",
+    "questions.status.open": "Open",
+    "questions.status.answered": "Answered",
+    "questions.status.closed": "Closed",
+    "comments.add": "Add a comment",
+    "comments.placeholder": "Write your comment...",
+    "comments.submit": "Post Comment",
+    "comments.no_comments": "No comments yet",
+    "common.loading": "Loading...",
+    "common.error": "Error",
+    "common.success": "Success",
+    "common.save": "Save",
+    "common.cancel": "Cancel",
+  },
+  id: {
+    "nav.home": "Beranda",
+    "nav.login": "Masuk",
+    "nav.signup": "Daftar",
+    "nav.logout": "Keluar",
+    "nav.create_question": "Tanya",
+    "auth.username": "Nama Pengguna",
+    "auth.password": "Kata Sandi",
+    "auth.login": "Masuk",
+    "auth.signup": "Daftar",
+    "auth.no_account": "Belum punya akun?",
+    "auth.has_account": "Sudah punya akun?",
+    "questions.title": "Judul",
+    "questions.description": "Deskripsi",
+    "questions.create": "Buat Pertanyaan",
+    "questions.status.open": "Terbuka",
+    "questions.status.answered": "Terjawab",
+    "questions.status.closed": "Ditutup",
+    "comments.add": "Tambah komentar",
+    "comments.placeholder": "Tulis komentar Anda...",
+    "comments.submit": "Kirim Komentar",
+    "comments.no_comments": "Belum ada komentar",
+    "common.loading": "Memuat...",
+    "common.error": "Kesalahan",
+    "common.success": "Berhasil",
+    "common.save": "Simpan",
+    "common.cancel": "Batal",
+  },
+};
+
+export function t(key: string, locale: Locale = "en"): string {
+  return translations[locale][key] || translations.en[key] || key;
+}

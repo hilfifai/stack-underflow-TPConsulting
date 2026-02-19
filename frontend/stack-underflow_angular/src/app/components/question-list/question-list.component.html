@@ -1,0 +1,70 @@
+@if (questionsService.loadingSignal()) {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>{{ t('questionDetail.submitting') }}</p>
+  </div>
+} @else {
+  <div class="search-bar">
+    <input
+      type="text"
+      class="search-input"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      [placeholder]="t('questionList.searchPlaceholder')"
+    />
+    @if (searchQuery()) {
+      <button type="button" class="search-clear" (click)="clearSearch()">×</button>
+    }
+  </div>
+  @if (searchQuery() || statusFilter()) {
+    <p class="search-results-count">
+      {{ t('questionList.searchResults').replace('{{count}}', filteredQuestions().length.toString()).replace('{{query}}', searchQuery()) }}
+    </p>
+  }
+  <div class="status-filter">
+    <button
+      type="button"
+      [class]="['filter-btn', { active: !statusFilter() }]"
+      (click)="setFilter('')"
+    >
+      {{ t('questionList.filterAll') }}
+    </button>
+    @for (status of statuses; track status) {
+      <button
+        type="button"
+        [class]="['filter-btn', { active: statusFilter() === status }]"
+        (click)="setFilter(status)"
+      >
+        {{ t('questionDetail.status.' + status) }}
+      </button>
+    }
+  </div>
+  <div class="questions">
+    @for (question of filteredQuestions(); track question.id) {
+      <a [routerLink]="['/questions', question.id]" class="question-card">
+        <div class="question-header">
+          <h3 class="question-title">{{ question.title }}</h3>
+          <span [class]="['status-badge', 'status-' + question.status]">
+            {{ t('questionDetail.status.' + question.status) }}
+          </span>
+        </div>
+        <p class="question-description">{{ question.description }}</p>
+        <div class="question-meta">
+          <span class="question-author">
+            {{ t('questionList.by') }} {{ question.username }}
+          </span>
+          <span class="question-date">{{ formatDate(question.createdAt) }}</span>
+          @if (question.comments.length > 0) {
+            <span class="question-comments">
+              {{ question.comments.length }} {{ question.comments.length === 1 ? t('questionList.comment') : t('questionList.comments') }}
+            </span>
+          }
+        </div>
+      </a>
+    } @empty {
+      <div class="no-questions">
+        {{ t('questionList.noQuestions') }}
+      </div>
+    }
+  </div>
+}

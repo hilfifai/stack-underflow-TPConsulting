@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.stackunderflow.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Stack Underflow</name>
+    <description><![CDATA[A Q&A application similar to Stack Overflow, built with Apache Cordova.]]></description>
+    <author email="dev@stackunderflow.com" href="https://stackunderflow.com">
+        Stack Underflow Team
+    </author>
+    <content src="index.html" />
+    
+    <!-- Access configuration -->
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="*" />
+    
+    <!-- Platform preferences -->
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="default" />
+    <preference name="BackgroundColor" value="0xffffffff" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenBackgroundColor" value="#ffffff" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="500" />
+    
+    <!-- Android preferences -->
+    <preference name="android-minSdkVersion" value="22" />
+    <preference name="android-targetSdkVersion" value="33" />
+    <preference name="android-buildToolsVersion" value="33.0.2" />
+    
+    <!-- iOS preferences -->
+    <preference name="deployment-target" value="11.0" />
+    <preference name="WKWebViewOnly" value="true" />
+    
+    <!-- Icons -->
+    <icon src="res/icons/icon.png" />
+    <icon src="res/icons/icon-72.png" density="72" />
+    <icon src="res/icons/icon-96.png" density="96" />
+    <icon src="res/icons/icon-128.png" density="128" />
+    <icon src="res/icons/icon-144.png" density="144" />
+    <icon src="res/icons/icon-152.png" density="152" />
+    <icon src="res/icons/icon-192.png" density="192" />
+    <icon src="res/icons/icon-384.png" density="384" />
+    <icon src="res/icons/icon-512.png" density="512" />
+    
+    <!-- Splash screens -->
+    <splash src="res/splash/splash.png" />
+    <splash src="res/splash/splash-320-480.png" density="port-320-480" />
+    <splash src="res/splash/splash-480-800.png" density="port-480-800" />
+    <splash src="res/splash/splash-720-1280.png" density="port-720-1280" />
+    <splash src="res/splash/splash-1080-1920.png" density="port-1080-1920" />
+    <splash src="res/splash/splash-1242-2208.png" density="port-1242-2208" />
+    <splash src="res/splash/splash-750-1334.png" density="port-750-1334" />
+    <splash src="res/splash/splash-2048-1536.png" density="port-2048-1536" />
+    
+    <!-- Android splash screens -->
+    <splash src="res/splash/android-splash-320-480.png" density="port-320-480" />
+    <splash src="res/splash/android-splash-480-800.png" density="port-480-800" />
+    <splash src="res/splash/android-splash-720-1280.png" density="port-720-1280" />
+    <splash src="res/splash/android-splash-1080-1920.png" density="port-1080-1920" />
+    
+    <!-- iOS splash screens -->
+    <splash src="res/splash/ios-splash-640-1136.png" width="640" height="1136" />
+    <splash src="res/splash/ios-splash-750-1334.png" width="750" height="1334" />
+    <splash src="res/splash/ios-splash-1242-2208.png" width="1242" height="2208" />
+    <splash src="res/splash/ios-splash-1536-2048.png" width="1536" height="2048" />
+    
+    <!-- Plugin configurations -->
+    <plugin name="cordova-plugin-whitelist" spec="1.3.4" />
+    <plugin name="cordova-plugin-statusbar" spec="2.4.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="6.0.0" />
+    
+    <!-- Android-specific -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon src="res/icons/android/icon-36.png" density="36" />
+        <icon src="res/icons/android/icon-48.png" density="48" />
+        <icon src="res/icons/android/icon-72.png" density="72" />
+        <icon src="res/icons/android/icon-96.png" density="96" />
+        <icon src="res/icons/android/icon-144.png" density="144" />
+        <icon src="res/icons/android/icon-192.png" density="192" />
+        <splash src="res/splash/android-splash-320-480.png" density="port-320-480" />
+        <splash src="res/splash/android-splash-480-800.png" density="port-480-800" />
+        <splash src="res/splash/android-splash-720-1280.png" density="port-720-1280" />
+        <splash src="res/splash/android-splash-1080-1920.png" density="port-1080-1920" />
+    </platform>
+    
+    <!-- iOS-specific -->
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon src="res/icons/ios/icon-20.png" width="20" height="20" />
+        <icon src="res/icons/ios/icon-29.png" width="29" height="29" />
+        <icon src="res/icons/ios/icon-40.png" width="40" height="40" />
+        <icon src="res/icons/ios/icon-58.png" width="58" height="58" />
+        <icon src="res/icons/ios/icon-60.png" width="60" height="60" />
+        <icon src="res/icons/ios/icon-76.png" width="76" height="76" />
+        <icon src="res/icons/ios/icon-80.png" width="80" height="80" />
+        <icon src="res/icons/ios/icon-87.png" width="87" height="87" />
+        <icon src="res/icons/ios/icon-120.png" width="120" height="120" />
+        <icon src="res/icons/ios/icon-152.png" width="152" height="152" />
+        <icon src="res/icons/ios/icon-167.png" width="167" height="167" />
+        <icon src="res/icons/ios/icon-180.png" width="180" height="180" />
+        <icon src="res/icons/ios/icon-1024.png" width="1024" height="1024" />
+        <splash src="res/splash/ios-splash-640-1136.png" width="640" height="1136" />
+        <splash src="res/splash/ios-splash-750-1334.png" width="750" height="1334" />
+        <splash src="res/splash/ios-splash-1242-2208.png" width="1242" height="2208" />
+        <splash src="res/splash/ios-splash-1536-2048.png" width="1536" height="2048" />
+    </platform>
+    
+    <!-- Windows platform -->
+    <platform name="windows">
+        <icon src="res/icons/windows/icon-150.png" width="150" height="150" />
+        <icon src="res/icons/windows/icon-300.png" width="300" height="300" />
+        <icon src="res/icons/windows/icon-wide-310.png" width="310" height="150" />
+    </platform>
+    
+    <!-- Browser platform -->
+    <platform name="browser">
+        <icon src="res/icons/browser/icon-16.png" width="16" height="16" />
+        <icon src="res/icons/browser/icon-32.png" width="32" height="32" />
+        <icon src="res/icons/browser/icon-96.png" width="96" height="96" />
+        <icon src="res/icons/browser/icon-128.png" width="128" height="128" />
+        <icon src="res/icons/browser/icon-192.png" width="192" height="192" />
+        <icon src="res/icons/browser/icon-512.png" width="512" height="512" />
+    </platform>
+</widget>

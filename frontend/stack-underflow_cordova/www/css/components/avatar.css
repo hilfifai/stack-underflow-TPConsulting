@@ -1,0 +1,218 @@
+/* ========================================
+   Avatar Component
+   ======================================== */
+
+/* Avatar Base */
+.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Avatar Sizes */
+.avatar-xs {
+    width: 24px;
+    height: 24px;
+    font-size: var(--font-size-xs);
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-sm);
+}
+
+.avatar-md {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-lg);
+}
+
+.avatar-lg {
+    width: 56px;
+    height: 56px;
+    font-size: var(--font-size-2xl);
+}
+
+.avatar-xl {
+    width: 80px;
+    height: 80px;
+    font-size: var(--font-size-3xl);
+}
+
+.avatar-2xl {
+    width: 120px;
+    height: 120px;
+    font-size: var(--font-size-4xl);
+}
+
+/* Avatar Shapes */
+.avatar-square {
+    border-radius: var(--border-radius);
+}
+
+.avatar-rounded {
+    border-radius: var(--border-radius-lg);
+}
+
+/* Avatar Status */
+.avatar-status {
+    position: relative;
+}
+
+.avatar-status::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--success-color);
+    border: 2px solid var(--bg-primary);
+    border-radius: 50%;
+}
+
+.avatar-status.status-away::after {
+    background-color: var(--warning-color);
+}
+
+.avatar-status.status-offline::after {
+    background-color: var(--gray-400);
+}
+
+.avatar-xs.avatar-status::after {
+    width: 8px;
+    height: 8px;
+}
+
+.avatar-lg.avatar-status::after {
+    width: 16px;
+    height: 16px;
+}
+
+/* Avatar Badge */
+.avatar-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+    color: white;
+    background-color: var(--error-color);
+    border-radius: 10px;
+    border: 2px solid var(--bg-primary);
+}
+
+/* Avatar Group */
+.avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-group .avatar {
+    margin-left: -8px;
+    border: 2px solid var(--bg-primary);
+}
+
+.avatar-group .avatar:first-child {
+    margin-left: 0;
+}
+
+.avatar-group .avatar-more {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+/* Avatar with Fallback */
+.avatar-fallback {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Avatar Image Overlay */
+.avatar-overlay {
+    position: relative;
+}
+
+.avatar-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-overlay .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.avatar-overlay:hover .overlay {
+    opacity: 1;
+}
+
+/* Avatar Clickable */
+.avatar-clickable {
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.avatar-clickable:hover {
+    transform: scale(1.05);
+}
+
+.avatar-clickable:active {
+    transform: scale(0.95);
+}
+
+/* Avatar Stack Overflow Style */
+.avatar-stackoverflow {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    text-decoration: none;
+}
+
+.avatar-stackoverflow .avatar {
+    margin: 0;
+    border: none;
+}
+
+.avatar-stackoverflow .avatar-reputation {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.avatar-stackoverflow:hover .avatar-reputation {
+    color: var(--primary-color);
+}

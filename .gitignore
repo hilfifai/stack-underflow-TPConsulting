@@ -1,0 +1,170 @@
+# ===================
+# General
+# ===================
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.*.local
+coverage/
+.nyc_output/
+*.lcov
+
+# ===================
+# Node.js / npm / yarn
+# ===================
+node_modules/
+npm-debug.log*
+yarn-error.log
+yarn-debug.log*
+package-lock.json
+yarn.lock
+.pnp
+.pnp.js
+.cache/
+dist/
+build/
+.next/
+out/
+
+# ===================
+# React / React Native
+# ===================
+**/android/.gradle/
+**/android/build/
+**/android/app/build/
+**/ios/Pods/
+**/ios/build/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+DerivedData/
+ios/Pods/
+ios/build/
+android/.gradle/
+android/build/
+android/app/build/
+
+# Expo
+.expo/
+expo-env.d.ts
+
+# ===================
+# Flutter
+# ===================
+**/android/.gradle/
+**/android/local.properties
+**/android/**/generated/
+**/android/.cxx/
+**/android/key.properties
+**/ios/Runner/GoogleService-Info.plist
+**/ios/**/UserInterfaceState.xcuserstate
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+.pub-cache/
+.pub/
+
+# ===================
+# Go (Golang)
+# ===================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/ (if not using modules)
+bin/
+.idea/
+.vscode/
+
+# ===================
+# Java / Spring Boot / Maven
+# ===================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===================
+# .NET / C#
+# ===================
+**/bin/
+**/obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.suo
+*.cache
+*.log
+.vs/
+.dotnet/
+project.lock.json
+project.assets.json
+
+# ===================
+# PHP / Laravel
+# ===================
+vendor/
+composer.lock
+*.env
+.phpunit.result.cache
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*
+.env.backup
+
+# ===================
+# Python / FastAPI
+# ===================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+
+# ===================
+# Rust
+# ===================
+target/
+Cargo.lock
+**/*.rs.bk
+
+# ===================
+# IDEs
+# ===================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

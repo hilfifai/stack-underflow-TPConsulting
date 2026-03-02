@@ -73,7 +73,7 @@ func LoadConfig() {
 		// jadi kalau mau production set ke 1 atau 2
 		AppUrl:     helper.GetEnvDefault("APP_URL", "http://localhost:8080"),
 		AppPortStr: helper.GetEnvDefault("APP_PORT", "8080"),
-		JwtSecret:  helper.GetEnvDefault("JWT_SECRET", "kasmdlkasmdkl123"),
+		JwtSecret:  helper.GetEnvDefault("JWT_SECRET", ""),
 		AppSwagger: helper.GetEnvAsBool("APP_SWAGGER", true),
 		Database: DatabaseConfig{
 			Host:    helper.GetEnvDefault("DB_HOST", "localhost"),

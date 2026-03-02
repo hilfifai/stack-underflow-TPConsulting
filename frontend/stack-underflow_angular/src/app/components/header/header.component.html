@@ -1,0 +1,44 @@
+<header class="header">
+  <div class="header-content">
+    <a routerLink="/" class="logo">{{ t('header.logo') }}</a>
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+        {{ t('header.questions') }}
+      </a>
+      @if (authService.isAuthenticated) {
+        <a routerLink="/questions/new" class="nav-link">
+          {{ t('header.askQuestion') }}
+        </a>
+      }
+    </nav>
+    <div class="user-menu">
+      <div class="language-switcher">
+        <button
+          type="button"
+          (click)="changeLanguage('en')"
+          [class]="['lang-btn', { active: i18nService.locale === 'en' }]"
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          (click)="changeLanguage('id')"
+          [class]="['lang-btn', { active: i18nService.locale === 'id' }]"
+        >
+          ID
+        </button>
+      </div>
+      @if (authService.isAuthenticated && authService.user; as user) {
+        <span class="username">{{ user.username }}</span>
+        <button type="button" (click)="logout()" class="btn-logout">
+          {{ t('header.logout') }}
+        </button>
+      } @else {
+        <div class="auth-buttons">
+          <a routerLink="/login" class="btn-login">{{ t('header.login') }}</a>
+          <a routerLink="/signup" class="btn-signup">{{ t('header.signup') }}</a>
+        </div>
+      }
+    </div>
+  </div>
+</header>

@@ -1,0 +1,98 @@
+<div class="question-detail-layout">
+  <div class="question-detail-main">
+    <a routerLink="/" class="back-link">{{ t('questionDetail.backLink') }}</a>
+    
+    @if (isEditing()) {
+      <div class="edit-form">
+        <h2>{{ t('questionDetail.editQuestion') }}</h2>
+        <div class="form-group">
+          <label>{{ t('questionDetail.titleLabel') }}</label>
+          <input type="text" [(ngModel)]="editTitle" />
+        </div>
+        <div class="form-group">
+          <label>{{ t('questionDetail.descriptionLabel') }}</label>
+          <textarea [(ngModel)]="editDescription" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label>{{ t('questionDetail.statusLabel') }}</label>
+          <select [(ngModel)]="editStatus">
+            <option value="open">{{ t('questionDetail.status.open') }}</option>
+            <option value="answered">{{ t('questionDetail.status.answered') }}</option>
+            <option value="closed">{{ t('questionDetail.status.closed') }}</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-primary" (click)="saveEdit()" [disabled]="saving()">
+            {{ saving() ? t('questionDetail.saving') : t('questionDetail.save') }}
+          </button>
+          <button type="button" class="btn-secondary" (click)="cancelEdit()">
+            {{ t('questionDetail.cancel') }}
+          </button>
+        </div>
+      </div>
+    } @else {
+      <div class="question-content">
+        <div class="question-header">
+          <h1 class="question-title">{{ question.title }}</h1>
+          <span [class]="['status-badge', 'status-' + question.status]">
+            {{ t('questionDetail.status.' + question.status) }}
+          </span>
+        </div>
+        <p class="question-description">{{ question.description }}</p>
+        <div class="question-meta">
+          <span>{{ t('questionDetail.askedBy') }} {{ question.username }}</span>
+          <span>{{ formatDate(question.createdAt) }}</span>
+          @if (canEdit()) {
+            <button type="button" class="btn-edit-small" (click)="startEdit()">
+              {{ t('questionDetail.edit') }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="comments-section">
+      <h3>{{ t('questionDetail.comments') }}</h3>
+      @if (authService.isAuthenticated) {
+        <div class="add-comment">
+          <textarea
+            [(ngModel)]="newComment"
+            [placeholder]="t('questionDetail.addCommentPlaceholder')"
+            rows="2"
+          ></textarea>
+          <button type="button" class="btn-primary" (click)="addComment()" [disabled]="commentSubmitting()">
+            {{ commentSubmitting() ? t('questionDetail.submitting') : t('questionDetail.addComment') }}
+          </button>
+        </div>
+      }
+      <div class="comments-list">
+        @for (comment of question.comments; track comment.id) {
+          <div class="comment-card">
+            <div class="comment-header">
+              <span class="comment-author">{{ comment.username }}</span>
+              <span class="comment-date">{{ formatDate(comment.createdAt) }}</span>
+            </div>
+            <p class="comment-content">{{ comment.content }}</p>
+          </div>
+        } @empty {
+          <p class="no-comments">{{ t('questionDetail.noComments') }}</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  <aside class="question-sidebar">
+    <div class="sidebar-section">
+      <h4 class="sidebar-title">{{ t('questionDetail.relatedQuestions') }}</h4>
+      <ul class="sidebar-list">
+        @for (related of relatedQuestions(); track related.id) {
+          <li class="sidebar-item">
+            <a [routerLink]="['/questions', related.id]" class="sidebar-link">
+              {{ related.title }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </aside>
+</div>

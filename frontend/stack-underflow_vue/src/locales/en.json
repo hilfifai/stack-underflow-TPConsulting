@@ -1,0 +1,118 @@
+{
+  "header": {
+    "logo": "Stack Underflow",
+    "questions": "Questions",
+    "askQuestion": "Ask Question",
+    "logout": "Logout",
+    "guest": "Guest",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "questionList": {
+    "title": "Questions",
+    "askQuestion": "Ask Question",
+    "noQuestions": "No questions yet. Be the first to ask!",
+    "by": "by",
+    "comment": "comment",
+    "comments": "comments",
+    "searchPlaceholder": "Search questions...",
+    "searchResults": "Found {{count}} results for \"{{query}}\"",
+    "noSearchResults": "No questions found matching your search.",
+    "filterAll": "All",
+    "filterResults": "Found {{count}} questions with status \"{{status}}\"",
+    "searchAndFilterResults": "Found {{count}} results for \"{{query}}\" with status \"{{status}}\"",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "createQuestion": {
+    "title": "Ask a Question",
+    "titleLabel": "Title",
+    "titlePlaceholder": "What's your question?",
+    "titleHint": "Minimum 5 characters, maximum 200 characters",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Provide more details about your question...",
+    "descriptionHint": "Minimum 10 characters, maximum 5000 characters",
+    "postQuestion": "Post Question",
+    "cancel": "Cancel",
+    "submitting": "Submitting...",
+    "error": {
+      "notLoggedIn": "You must be logged in to create a question",
+      "titleRequired": "Title is required",
+      "titleTooShort": "Title must be at least 5 characters",
+      "titleTooLong": "Title must be less than 200 characters",
+      "descriptionRequired": "Description is required",
+      "descriptionTooShort": "Description must be at least 10 characters",
+      "descriptionTooLong": "Description must be less than 5000 characters"
+    }
+  },
+  "questionDetail": {
+    "notFound": "Question not found",
+    "backToQuestions": "Back to Questions",
+    "backLink": "← Back to Questions",
+    "editQuestion": "Edit Question",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "statusLabel": "Status",
+    "status": {
+      "open": "Open",
+      "answered": "Answered",
+      "closed": "Closed"
+    },
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "askedBy": "Asked by",
+    "edit": "Edit",
+    "comments": "Comments",
+    "addCommentPlaceholder": "Add a comment...",
+    "addComment": "Add Comment",
+    "submitting": "Submitting...",
+    "noComments": "No comments yet.",
+    "relatedQuestions": "Related Questions",
+    "hotNetworkQuestions": "Hot Network Questions",
+    "error": {
+      "commentRequired": "Comment content is required",
+      "commentTooShort": "Comment must be at least 3 characters",
+      "commentTooLong": "Comment must be less than 1000 characters",
+      "unauthorized": "You are not authorized to perform this action"
+    }
+  },
+  "login": {
+    "title": "Stack Underflow",
+    "subtitle": "Q&A Platform",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Enter any username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter any password",
+    "loginButton": "Login",
+    "note": "Note: This is a mock login. Any username/password will work."
+  },
+  "signup": {
+    "title": "Stack Underflow",
+    "subtitle": "Create your account",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Choose a username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Choose a password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "signupButton": "Sign Up",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "errors": {
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required",
+      "passwordsNotMatch": "Passwords do not match",
+      "usernameExists": "Username already exists"
+    }
+  },
+  "date": {
+    "justNow": "Just now",
+    "minuteAgo": "{{count}} minute ago",
+    "minutesAgo": "{{count}} minutes ago",
+    "hourAgo": "{{count}} hour ago",
+    "hoursAgo": "{{count}} hours ago",
+    "dayAgo": "{{count}} day ago",
+    "daysAgo": "{{count}} days ago"
+  }
+}

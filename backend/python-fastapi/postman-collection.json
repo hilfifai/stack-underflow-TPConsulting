@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "stack-underflow-api-fastapi",
+		"name": "StackUnderflow API - Python FastAPI",
+		"description": "Q&A Platform API Collection - Python FastAPI Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						},
+						"description": "Login user and get JWT token"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						},
+						"description": "Register new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/data",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "data"]
+						},
+						"description": "Get current authenticated user data"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Create Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"How to learn FastAPI?\",\n    \"description\": \"I want to learn FastAPI backend development. Any recommendations?\",\n    \"status\": \"OPEN\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Create a new question"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Get all questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paginated Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/paginated?page=1&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "paginated"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get paginated questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/search?q=fastapi",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "fastapi"
+								}
+							]
+						},
+						"description": "Search questions by keyword"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hot Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/hot?limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "hot"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get hot questions with most comments"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/{id}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{id}"]
+						},
+						"description": "Get question by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Related Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/{id}/related?limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{id}", "related"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get related questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated: How to learn FastAPI?\",\n    \"description\": \"I want to learn FastAPI backend development. Any recommendations?\",\n    \"status\": \"ANSWERED\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions/{id}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{id}"]
+						},
+						"description": "Update question (owner only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/questions/{id}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{id}"]
+						},
+						"description": "Delete question (owner only)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Great question! I recommend reading the official docs\",\n    \"question_id\": \"question-id-here\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments"]
+						},
+						"description": "Create a comment on a question"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments By Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/question/{question_id}",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "question", "{question_id}"]
+						},
+						"description": "Get all comments for a question"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/comments/{id}",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "{id}"]
+						},
+						"description": "Delete a comment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/health",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["health"]
+						},
+						"description": "Health check endpoint"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

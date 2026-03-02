@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: gap: https://ssl.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://api.stackunderflow.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; media-src *; img-src 'self' data: content:;">
+    <meta name="color-scheme" content="light dark">
+    <title>Stack Underflow</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/login.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+    <link rel="stylesheet" href="css/pages/question-detail.css">
+    <link rel="stylesheet" href="css/pages/ask-question.css">
+    <link rel="stylesheet" href="css/components/header.css">
+    <link rel="stylesheet" href="css/components/question-card.css">
+    <link rel="stylesheet" href="css/components/comment.css">
+    <link rel="stylesheet" href="css/components/loading.css">
+    <link rel="stylesheet" href="css/components/modal.css">
+    <link rel="stylesheet" href="css/components/tabs.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/inputs.css">
+    <link rel="stylesheet" href="css/components/avatar.css">
+    <link rel="stylesheet" href="css/components/toast.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app">
+        <!-- Header -->
+        <header id="app-header" class="header hidden">
+            <div class="header-left">
+                <button id="menu-btn" class="header-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="header-center">
+                <h1 class="header-title">Stack Underflow</h1>
+            </div>
+            <div class="header-right">
+                <button id="search-btn" class="header-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button id="profile-btn" class="header-btn">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main id="app-content">
+            <!-- Login Page -->
+            <div id="page-login" class="page active">
+                <div class="login-container">
+                    <div class="login-header">
+                        <div class="logo">
+                            <i class="fas fa-stack-overflow"></i>
+                        </div>
+                        <h1>Stack Underflow</h1>
+                        <p>Ask questions, get answers</p>
+                    </div>
+                    <form id="login-form" class="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </form>
+                    <div class="login-footer">
+                        <p>Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Signup Page -->
+            <div id="page-signup" class="page">
+                <div class="login-container">
+                    <div class="login-header">
+                        <div class="logo">
+                            <i class="fas fa-stack-overflow"></i>
+                        </div>
+                        <h1>Create Account</h1>
+                        <p>Join the community</p>
+                    </div>
+                    <form id="signup-form" class="login-form">
+                        <div class="form-group">
+                            <label for="signup-name">Display Name</label>
+                            <input type="text" id="signup-name" name="name" placeholder="Choose a display name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" name="password" placeholder="Create a password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    </form>
+                    <div class="login-footer">
+                        <p>Already have an account? <a href="#" id="go-to-login">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Home Page -->
+            <div id="page-home" class="page">
+                <div class="home-container">
+                    <!-- Tabs -->
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="feed">Feed</button>
+                        <button class="tab-btn" data-tab="recent">Recent</button>
+                        <button class="tab-btn" data-tab="unanswered">Unanswered</button>
+                    </div>
+                    
+                    <!-- Questions List -->
+                    <div id="questions-container" class="questions-container">
+                        <!-- Questions will be loaded here -->
+                    </div>
+                    
+                    <!-- Loading Indicator -->
+                    <div id="loading" class="loading hidden">
+                        <div class="spinner"></div>
+                        <p>Loading questions...</p>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state hidden">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>No questions yet</h3>
+                        <p>Be the first to ask a question!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question Detail Page -->
+            <div id="page-question-detail" class="page">
+                <div class="question-detail-container">
+                    <!-- Question Detail -->
+                    <div id="question-detail" class="question-detail">
+                        <!-- Question content will be loaded here -->
+                    </div>
+                    
+                    <!-- Comments Section -->
+                    <div id="comments-section" class="comments-section">
+                        <h3>Comments</h3>
+                        <div id="comments-list" class="comments-list">
+                            <!-- Comments will be loaded here -->
+                        </div>
+                        <form id="add-comment-form" class="add-comment-form">
+                            <textarea id="comment-input" placeholder="Add a comment..." rows="2"></textarea>
+                            <button type="submit" class="btn btn-secondary">Add Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ask Question Page -->
+            <div id="page-ask-question" class="page">
+                <div class="ask-question-container">
+                    <h2>Ask a Question</h2>
+                    <form id="ask-question-form" class="ask-question-form">
+                        <div class="form-group">
+                            <label for="question-title">Title</label>
+                            <input type="text" id="question-title" name="title" placeholder="What's your question? Be specific." required minlength="15">
+                            <small class="form-hint">Be specific and imagine you're asking a question to another person</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="question-body">Body</label>
+                            <textarea id="question-body" name="body" rows="8" placeholder="Include all the information someone would need to answer your question" required minlength="30"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question-tags">Tags</label>
+                            <input type="text" id="question-tags" name="tags" placeholder="Add tags (e.g., javascript, react, node.js)">
+                            <small class="form-hint">Add up to 5 tags separated by commas</small>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-question" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Post Question</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Search Page -->
+            <div id="page-search" class="page">
+                <div class="search-container">
+                    <div class="search-header">
+                        <input type="text" id="search-input" placeholder="Search questions...">
+                        <button id="close-search" class="close-search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="search-results" class="search-results">
+                        <!-- Search results will appear here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Page -->
+            <div id="page-profile" class="page">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h2 id="profile-name">User Name</h2>
+                        <p id="profile-email">user@email.com</p>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="profile-questions">0</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="profile-answers">0</span>
+                            <span class="stat-label">Answers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="profile-reputation">0</span>
+                            <span class="stat-label">Reputation</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="my-questions-btn" class="btn btn-secondary btn-block">My Questions</button>
+                        <button id="logout-btn" class="btn btn-outline btn-block">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Bottom Navigation -->
+        <nav id="bottom-nav" class="bottom-nav hidden">
+            <button class="nav-item active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-page="ask">
+                <i class="fas fa-plus-circle"></i>
+                <span>Ask</span>
+            </button>
+            <button class="nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </nav>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">
+            <span id="toast-message"></span>
+        </div>
+        
+        <!-- Modal Overlay -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div id="modal" class="modal">
+                <div class="modal-header">
+                    <h3 id="modal-title">Modal Title</h3>
+                    <button id="modal-close" class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="modal-content">
+                    <!-- Modal content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="cordova.js"></script>
+    <script src="js/lib/fastclick.js"></script>
+    <script src="js/lib/zepto.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/services/api.js"></script>
+    <script src="js/services/auth.js"></script>
+    <script src="js/services/storage.js"></script>
+    <script src="js/utils/date.js"></script>
+    <script src="js/utils/validation.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/components/header.js"></script>
+    <script src="js/components/question-card.js"></script>
+    <script src="js/components/comment.js"></script>
+    <script src="js/components/loading.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/pages/login.js"></script>
+    <script src="js/pages/signup.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/question-detail.js"></script>
+    <script src="js/pages/ask-question.js"></script>
+    <script src="js/pages/search.js"></script>
+    <script src="js/pages/profile.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+{
+  "info": {
+    "name": "StackUnderflow API - Laravel",
+    "description": "Postman collection for StackUnderflow Q&A Platform API (Laravel Backend)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "description": "Register a new user"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "description": "Login and get JWT token"
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            },
+            "description": "Logout current user"
+          },
+          "response": []
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Get current user profile"
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh"]
+            },
+            "description": "Refresh JWT token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Questions",
+      "item": [
+        {
+          "name": "List Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions"],
+              "query": [
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Get all questions with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Popular Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions/popular",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "popular"]
+            },
+            "description": "Get popular questions by votes"
+          },
+          "response": []
+        },
+        {
+          "name": "Recent Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions/recent",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "recent"]
+            },
+            "description": "Get recent questions"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Question",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "1"]
+            },
+            "description": "Get question details by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/questions",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"How to create a Laravel API?\",\n    \"body\": \"I want to create a REST API using Laravel. What are the best practices?\",\n    \"tags\": [1, 2, 3]\n}"
+            },
+            "description": "Create a new question"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/questions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated: How to create a Laravel API?\",\n    \"body\": \"Updated description of my question.\",\n    \"tags\": [1, 2]\n}"
+            },
+            "description": "Update a question"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Question",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "1"]
+            },
+            "description": "Delete a question"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Answers",
+      "item": [
+        {
+          "name": "List Answers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/questions/1/answers",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "1", "answers"]
+            },
+            "description": "Get all answers for a question"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Answer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/questions/1/answers",
+              "host": ["{{baseUrl}}"],
+              "path": ["questions", "1", "answers"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"body\": \"Here is a step-by-step guide to create a Laravel API...\"\n}"
+            },
+            "description": "Create a new answer"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Answer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/answers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["answers", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"body\": \"Updated answer content...\"\n}"
+            },
+            "description": "Update an answer"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Answer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/answers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["answers", "1"]
+            },
+            "description": "Delete an answer"
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Answer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/answers/1/accept",
+              "host": ["{{baseUrl}}"],
+              "path": ["answers", "1", "accept"]
+            },
+            "description": "Accept an answer (question owner only)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for StackUnderflow */
+:root {
+    --brand-orange: #f48024;
+    --brand-dark: #2d2d2d;
+    --brand-gray: #6a737c;
+    --brand-light-gray: #f1f2f3;
+}
+
+body {
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Custom component styles */
+.btn-primary {
+    @apply bg-brand-orange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded transition duration-200;
+}
+
+.btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-brand-dark font-semibold py-2 px-4 rounded transition duration-200;
+}
+
+.input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-transparent outline-none transition duration-200;
+}
+
+.card {
+    @apply bg-white rounded-lg shadow-md p-6;
+}
+
+/* Question card styles */
+.question-card {
+    @apply bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200;
+}
+
+.question-stats {
+    @apply flex items-center space-x-4 text-sm text-brand-gray;
+}
+
+.question-stat {
+    @apply flex flex-col items-center;
+}
+
+.question-stat-value {
+    @apply font-bold text-lg;
+}
+
+/* Answer styles */
+.answer-card {
+    @apply bg-white border border-gray-200 rounded-lg p-6 mb-4;
+}
+
+.answer-accepted {
+    @apply border-l-4 border-l-green-500;
+}
+
+/* Tag styles */
+.tag {
+    @apply inline-block bg-brand-light-gray text-brand-dark text-xs px-2 py-1 rounded hover:bg-gray-300 transition duration-200;
+}

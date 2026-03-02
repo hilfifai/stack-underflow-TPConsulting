@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "stack-underflow-api-rust",
+		"name": "StackUnderflow API - Rust",
+		"description": "Q&A Platform API Collection - Rust Backend (Actix-web)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						},
+						"description": "Login user and get JWT token"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						},
+						"description": "Register new user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Create Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"How to learn Rust?\",\n    \"description\": \"I want to learn Rust programming. Any recommendations?\",\n    \"status\": \"OPEN\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Create a new question"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions"]
+						},
+						"description": "Get all questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/questions/{{questionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{{questionId}}"]
+						},
+						"description": "Get question by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated: How to learn Rust?\",\n    \"description\": \"I want to learn Rust programming. Any recommendations?\",\n    \"status\": \"ANSWERED\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/questions/{{questionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{{questionId}}"]
+						},
+						"description": "Update question (owner only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/questions/{{questionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["questions", "{{questionId}}"]
+						},
+						"description": "Delete question (owner only)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Great question! Check the Rust book\",\n    \"question_id\": \"{{questionId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments"]
+						},
+						"description": "Create a comment on a question"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments By Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/comments/question/{{questionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "question", "{{questionId}}"]
+						},
+						"description": "Get all comments for a question"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/comments/{{commentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["comments", "{{commentId}}"]
+						},
+						"description": "Delete a comment"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
